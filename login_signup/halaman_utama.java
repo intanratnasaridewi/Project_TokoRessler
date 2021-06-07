@@ -91,7 +91,7 @@ public class halaman_utama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-      for (double i=0.0;i<=1.0;i=i+0.1){
+      for (double i=0.0;i<=1.0;i=i+0.1){//looping yang digunakan aga ketika membuka halaan utama agak perlahan
           String nilai=i+"";
           float a= Float.valueOf(nilai);
           this.setOpacity(a);
@@ -124,18 +124,18 @@ public class halaman_utama extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void setsignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_setsignupMouseClicked
-       
+       //menu juka sign up maka class sign up akan ditampilkan
         new signupsite().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_setsignupMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-       new menu1_lihatbarang().setVisible(true);
+       new menu1_lihatbarang().setVisible(true);//jika memilih menu lihat barang maka class lihat barang akan ditampilkan
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-      
+      //konfirmasi ini untuk keluar 
          int jawab= JOptionPane.showConfirmDialog(this, "apakah anda ingin keluar?");
         switch(jawab){
             case JOptionPane.YES_OPTION:
