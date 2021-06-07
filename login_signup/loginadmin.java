@@ -21,21 +21,25 @@ public class loginadmin extends javax.swing.JFrame {
     /**
      * Creates new form loginadmin
      */
+    //merupakan objek untuk mencari nama-nama maupun password yang dimiliki admin, dengan query select
     public void find_admin(){
-            PreparedStatement statement;
+        PreparedStatement statement;
        ResultSet result;
-        String name=nama1.getText();
-       String password1=String.valueOf(password.getPassword());
-       String querysql="SELECT*FROM admin WHERE nama=? AND password=?";
+        String name=nama1.getText();//mendapatkan nilai dari gettext
+       String password1=String.valueOf(password.getPassword());//mendapatkan nilai password dari field password
+       String querysql="SELECT*FROM admin WHERE nama=? AND password=?";//query untuk menyocokkan apakah nama maupun password yang diinputkan admin benar2 ada pada database
        try{
+           //untuk mengexecute query dan menyambungkannya dengan class bdconnection yang ada pada packace database
            statement = dbconnection.getConnection().prepareStatement(querysql);
+           //set string yng dieksekusi untuk mengisi tanda '?' pada query, disesuaikan kalo 1, berarrti mengarah pada '?' pertama
            statement.setString(1, name);
            statement.setString(2, password1);
-           result=statement.executeQuery();
+           result=statement.executeQuery();//execute query
            if(result.next()){
-                int jawab= JOptionPane.showConfirmDialog(this, "klik yes untuk ke menu update, no untuk accept retur, dan cancel untuk batal");
-        switch(jawab){
-            case JOptionPane.YES_OPTION:
+                int jawab= JOptionPane.showConfirmDialog(this, "klik yes untuk ke menu update, no untuk accept retur, dan cancel untuk batal");//jika query berhasil diexecute dan
+               //nama-password admin memang ada maka akan muncul konfirmasi dialog apakah admin mau kemenu mana
+        switch(jawab){//akan ada 3 kondisi dimana menggunakan switch
+            case JOptionPane.YES_OPTION://jika user milih yes berarti akan diarahkan pada class updelbarang
                 JOptionPane.showMessageDialog(this, "anda memilih update");
                 updelbarang hm=new updelbarang();
                hm.setVisible(true);
@@ -43,7 +47,7 @@ public class loginadmin extends javax.swing.JFrame {
                hm.setLocationRelativeTo(null);
                this.dispose(); 
                 break;
-            case JOptionPane.NO_OPTION:
+            case JOptionPane.NO_OPTION://jika admin memilih no maka akan diarahkan ke enu acceptretur
                  JOptionPane.showMessageDialog(this, "anda memilih accept");
                   acceptretur ac=new acceptretur();
                ac.setVisible(true);
@@ -51,12 +55,12 @@ public class loginadmin extends javax.swing.JFrame {
                ac.setLocationRelativeTo(null);
                this.dispose();
                   break;
-            case JOptionPane.CANCEL_OPTION:
+            case JOptionPane.CANCEL_OPTION://jika admin memilih cancel maka admin akan tetap berada dihalaman
                 JOptionPane.showMessageDialog(this, "anda memilih cancel");
                 break;
         }
                
-           }else if(name.isEmpty()||password1.isEmpty()){
+           }else if(name.isEmpty()||password1.isEmpty()){//kondisi jika semisal admin tidak mengisi field nama/passwrod maka 2 2 nya muncul pesan error
                JOptionPane.showMessageDialog(this, "nama/password tidak boleh kosong", "error", JOptionPane.ERROR_MESSAGE);
            }
            else{
@@ -117,7 +121,7 @@ public class loginadmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-     find_admin();
+     find_admin();//jika admin menekan tombol login maka akan memanggil method find_admin() yang ada di atas
     }//GEN-LAST:event_loginMouseClicked
 
     /**
