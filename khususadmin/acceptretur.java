@@ -73,7 +73,9 @@ public final class acceptretur extends javax.swing.JFrame {
            System.out.println(ex.getMessage());
        }
     }
-    //merupakan objek atau method untuk update keputusan admin jika tidak setuju
+    //merupakan objek atau method untuk update keputusan admin jika tidak setuju//
+    
+    //cara kerjanya sama dnegan method setuju() hanya saja set string rusak='tidak setuju' jadi value yang akan dimasukkan ke database berbeda
      public void tidak_setuju(){
        PreparedStatement statement;
           ResultSet result;
@@ -100,7 +102,7 @@ public final class acceptretur extends javax.swing.JFrame {
     }
     public acceptretur() {
         initComponents();
-          tampilan_retur();
+          tampilan_retur();//memanggil method tampilan di main agar ketika di run program akan otomatis kebuka
     }
 
     /**
@@ -215,16 +217,16 @@ public final class acceptretur extends javax.swing.JFrame {
         //konfirmasi dialog untuk menanyakan kepada user
          int jawab= JOptionPane.showConfirmDialog(this, "klik yes untuk ke menu accept, no untuk keluar, dan cancel untuk batal");
         switch(jawab){
-            case JOptionPane.YES_OPTION:
+            case JOptionPane.YES_OPTION://jika memilih yes maka akan ke updel barang
                 JOptionPane.showMessageDialog(this, "anda memilih ke menu acceptretur");
                 new updelbarang().setVisible(true);
                 this.dispose();
                 break;
-            case JOptionPane.NO_OPTION:
+            case JOptionPane.NO_OPTION://kalo no bakal keluar dari program
                  JOptionPane.showMessageDialog(this, "anda memilih keluar");
                 System.exit(0);
                   break;
-            case JOptionPane.CANCEL_OPTION:
+            case JOptionPane.CANCEL_OPTION://kalo cancel tetap di halaman
                 JOptionPane.showMessageDialog(this, "anda memilih cancel");
                 break;
         }
