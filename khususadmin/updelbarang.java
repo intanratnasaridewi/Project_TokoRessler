@@ -18,11 +18,14 @@ import login_signup.menu;
  *
  * @author User
  */
+//class updel barang merupakan class yang berfungsi bagi admin untuk mengedit dtaa barang, menghapus data barang, serta menambahkan data barang
+//jadi pada class ini akan terdapat 4 method utama, delete, insert, update, maupun tabel untuk menampillkan barang
 public class updelbarang extends javax.swing.JFrame {
 
     /**
      * Creates new form updelbarang
      */
+    //method untuk menampilkan semua barang yang ada pada tabel barang ke tabel di program
      public void tampilan_barang(){
         PreparedStatement statement;
         ResultSet result;
@@ -32,9 +35,10 @@ public class updelbarang extends javax.swing.JFrame {
         model.addColumn("stok");//aka judul kolom
         try{
     
-            String sql="Select *From barang";
-            statement = dbconnection.getConnection().prepareStatement(sql);
-            result=statement.executeQuery();
+            String sql="Select *From barang";//karena fungsinya untuk menampilkan barang-barang maka, query select all dari table barang
+            statement = dbconnection.getConnection().prepareStatement(sql);//untuk memprepare query serta menghubungkannya dengan class dbconnection pada package database
+            //yang berfungsi untuk menghubungkan ke database
+            result=statement.executeQuery();//mengexecute query
             while(result.next()){
                model.addRow(new Object[]{result.getString(2),result.getString(3), result.getString(4)}); 
                //ini ngambil data dari tabel, getstring 2 berarti ngambil data pada kolom 2, dsb
@@ -42,28 +46,34 @@ public class updelbarang extends javax.swing.JFrame {
                //set datanya ke tabel
             }
         }catch(SQLException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage());//pesan yang akan ditampilkan jika terjadi error pada koneksi database ataupun kesalahan pada query
         }
     }
     public void insert_barang(){
-         PreparedStatement statement;
-         String nama=name.getText();    
-         String hargabarang=harga.getText();
-         String stok=jumlah.getText();
-         String querysql="INSERT INTO barang(nama_barang,harga_barang,stok) VALUES(?,?,?)";
+         PreparedStatement statement;//prepare statement diperlukan untuk memprepare quey yang akan diexecute
+        //jika hanya update, delete, insert yang diperlukan hanya prepareStatement, tetapi jika
+        //yang digunakan berhubungan dnegan select, dll maka diperlukan juga resultset
+         String nama=name.getText();   //untuk mendapatkan nilai dari filed text nama 
+         String hargabarang=harga.getText();//mendapatkan nilai dari text field harga
+         String stok=jumlah.getText();//mendapatkan nila dari field text 
+         String querysql="INSERT INTO barang(nama_barang,harga_barang,stok) VALUES(?,?,?)";//query yang diguakan untuk proses insert
+        //dimana aka dilakukan insert 2 value
        try{
-           statement = dbconnection.getConnection().prepareStatement(querysql);
-           statement.setString(1, nama);
-           statement.setString(2,hargabarang );
-           statement.setString(3, stok);
+           statement = dbconnection.getConnection().prepareStatement(querysql);//prepare
+           statement.setString(1, nama);//value utama, mewakilkan '?' pertama
+           statement.setString(2,hargabarang );//value kedua, mewakilkan '?' kedua
+           statement.setString(3, stok);//value ketiga, mewakilkan '?' ketiga
            
-           if(!nama.isEmpty()||!hargabarang.isEmpty()||!stok.isEmpty()){
-               statement.executeUpdate();
+           if(!nama.isEmpty()||!hargabarang.isEmpty()||!stok.isEmpty()){//kondisi jika smeisal tidak ada value yang kosong alias berhasil
+               statement.executeUpdate();//baru query akan di execute
+               //tiga baris ini berfungsi untuk merefresh tabel, kalau nggak dikasi biasanya pas update atau insert dia nggak mau otomatis tampil
+               //jadi caranya di set dulu ke 0 baru ditampilkan lagi
                DefaultTableModel model=(DefaultTableModel)data.getModel();
                model.setRowCount(0);
                  tampilan_barang();
+               //setelah di refresh baru akan munsul pesan kalo data udah berhasil ditambah
            JOptionPane.showMessageDialog(this, "data berhasil ditambahkan","berhasil", JOptionPane.INFORMATION_MESSAGE);
-             if(nama.isEmpty()||hargabarang.isEmpty()||stok.isEmpty()){
+             if(nama.isEmpty()||hargabarang.isEmpty()||stok.isEmpty()){//ini kalo semisal ada salah satu field yang masih kosong maka akan error
                JOptionPane.showMessageDialog(this, "tidak boleh ada data yang kosong", "error", JOptionPane.ERROR_MESSAGE);
                 } 
            }
@@ -72,17 +82,20 @@ public class updelbarang extends javax.swing.JFrame {
            System.out.println(ex.getMessage());
        }
     }
+    //method yang digunakan untuk menghapus barang
     public void delete_barang(){
           PreparedStatement statement;
           ResultSet result;
           String nama=name.getText();
          
-          String querysql="delete from barang where nama_barang=?";
+          String querysql="delete from barang where nama_barang=?";//query yang diguakan, dengan pengkondisian jika nama-barang nya itu sama dengan nama barang yang di update 
+        //oleh admin
        try{
-            statement = dbconnection.getConnection().prepareStatement(querysql);
-            statement.setString(1, nama);
-            if(!nama.isEmpty()){
+            statement = dbconnection.getConnection().prepareStatement(querysql);//megkoneksikan dan memprepared
+            statement.setString(1, nama);//value yang akan dibandingkan atau yang akan mewakilkan '?' pada query
+            if(!nama.isEmpty()){//kalo udah nggak ada yang kosong maka statement akan di execute
             statement.executeUpdate();
+                //untuk merefresh tabel
             DefaultTableModel model=(DefaultTableModel)data.getModel();
                model.setRowCount(0);
                  tampilan_barang();
@@ -255,20 +268,23 @@ public class updelbarang extends javax.swing.JFrame {
         update_barang();
     }//GEN-LAST:event_jLabel5MouseClicked
 
+    //method ketika user/admin mengeklik salah satu row pada tabel
+    //jadi ini berfungsi jika misal row tersebut diklik maka data-data pada row tersebut akan langsung di set di textfield
     private void dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataMouseClicked
        
-        DefaultTableModel model=(DefaultTableModel)data.getModel();
-        String namabarang=(String) model.getValueAt(data.getSelectedRow(), 0);
-        String harga1=(String) model.getValueAt(data.getSelectedRow(), 1);
-        String stok=(String) model.getValueAt(data.getSelectedRow(), 2);
+        DefaultTableModel model=(DefaultTableModel)data.getModel();//tabel nya
+        String namabarang=(String) model.getValueAt(data.getSelectedRow(), 0);//akan menselect data pada row yang diselect bagian kolom ke-0(artinya pertama)
+        String harga1=(String) model.getValueAt(data.getSelectedRow(), 1);//akan menselect data pada row yang diselect bagian kolom ke-1(artinya kedua)
+        String stok=(String) model.getValueAt(data.getSelectedRow(), 2);//akan menselect data pada row yang diselect bagian kolom ke-2(artinya ketiga)
         
-        name.setText(namabarang);
-        harga.setText(harga1);
-        jumlah.setText(stok);
+        name.setText(namabarang);//ini akan langsung di set textnya ke text field name
+        harga.setText(harga1);//ini akan langsung di set textnya ke text field harga
+        jumlah.setText(stok);//ini akan langsung di set textnya ke text field jumlah
     }//GEN-LAST:event_dataMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
+        
         int jawab= JOptionPane.showConfirmDialog(this, "klik yes untuk ke menu accept, no untuk keluar, dan cancel untuk batal");
         switch(jawab){
             case JOptionPane.YES_OPTION:
