@@ -222,11 +222,11 @@ public class menu4_returbarang extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox<String> jeniskerusakan;
-    private javax.swing.JTextField jumlahbarang;
-    private javax.swing.JTextField kode;
-    private javax.swing.JComboBox<String> nama;
-    private javax.swing.JComboBox<String> namabarang;
+    private javax.swing.JComboBox<String> jeniskerusakan; //menampilkan laporan jenis kerusakan
+    private javax.swing.JTextField jumlahbarang; //menampilkan jumlah barang
+    private javax.swing.JTextField kode; //untuk menampilkan kode barang
+    private javax.swing.JComboBox<String> nama; //menampilkan nama pembeli
+    private javax.swing.JComboBox<String> namabarang; //menampilkan nama barang
     private javax.swing.JLabel search;
     private javax.swing.JLabel search1;
     private javax.swing.JLabel search2;
