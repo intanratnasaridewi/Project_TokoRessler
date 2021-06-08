@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//untuk melihat tampilan barang-barang yang tersedia
+
 package submenu;
 
 import java.sql.Connection;
