@@ -440,20 +440,20 @@ return a;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> alamat;
-    private com.toedter.calendar.JDateChooser datetransaksi;
+    private com.toedter.calendar.JDateChooser datetransaksi; //menampilkan tanggal terjadinya transaksi
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField kode;
-    private javax.swing.JComboBox<String> metodebayar;
-    private javax.swing.JComboBox<String> namapelanggan;
-    private javax.swing.JComboBox<String> pengiriman;
-    private javax.swing.JLabel retur;
-    private javax.swing.JLabel search;
+    private javax.swing.JComboBox<String> metodebayar; //untuk memilih metode pembayaran
+    private javax.swing.JComboBox<String> namapelanggan; //menampilkan nama pelanggan
+    private javax.swing.JComboBox<String> pengiriman; //melakukan pengiriman
+    private javax.swing.JLabel retur; //untuk melakukan retur barang
+    private javax.swing.JLabel search; //untuk mencari barang
     private javax.swing.JLabel submit;
-    private javax.swing.JTextField total;
-    private javax.swing.JLabel transaksi;
+    private javax.swing.JTextField total; //untuk menampilkan total
+    private javax.swing.JLabel transaksi; //untuk menampilkan transaksi
     // End of variables declaration//GEN-END:variables
 }
