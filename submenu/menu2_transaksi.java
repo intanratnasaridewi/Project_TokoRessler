@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//program untuk melakukan transaksi yang terjadi
 package submenu;
 
 
@@ -411,13 +412,13 @@ public void auto_id() {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jumlah;
-    private javax.swing.JTextField kode;
-    private javax.swing.JLabel lihatproduct;
-    private javax.swing.JComboBox<String> nama;
-    private javax.swing.JComboBox<String> namapelanggan;
-    private javax.swing.JLabel pembayaran;
-    private javax.swing.JLabel retur;
-    private javax.swing.JLabel tambah;
+    private javax.swing.JTextField jumlah; //untuk menampilkan jumlah total
+    private javax.swing.JTextField kode; //untuk menginput kode barang
+    private javax.swing.JLabel lihatproduct; //untuk melihat barang
+    private javax.swing.JComboBox<String> nama; //untuk menampilkan nama barang
+    private javax.swing.JComboBox<String> namapelanggan; //untuk menampilkan nama pelanggan
+    private javax.swing.JLabel pembayaran; //untuk menampilkan harga pembayaran
+    private javax.swing.JLabel retur; //untuk melakukan retur
+    private javax.swing.JLabel tambah; //untuk melakukan penambahan barang
     // End of variables declaration//GEN-END:variables
 }
