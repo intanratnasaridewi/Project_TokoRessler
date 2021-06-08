@@ -100,7 +100,7 @@ public final class acceptretur extends javax.swing.JFrame {
            System.out.println(ex.getMessage());
        }
     }
-    public acceptretur() {
+    public acceptretur() {  
         initComponents();
           tampilan_retur();//memanggil method tampilan di main agar ketika di run program akan otomatis kebuka
     }
